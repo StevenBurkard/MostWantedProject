@@ -48,25 +48,51 @@ function searchPeopleDataSet(people) {
             results = searchByName(people);
             break;
         case 'traits':
-            choice = prompt("Which trait would you like to seach by?");
             switch (searchTypeTraitChoice) {
                 case 'height':
-                    choice = prompt("Which trait would you like to seach by?");
+                    results = "";
+                    break;
                 case 'weight':
-                    choice = prompt("Which trait would you like to seach by?");
+                    results = "";
+                    break;
                 case 'occupation':
-                    choice = prompt("Which trait would you like to seach by?");
+                    results = "";
+                    break;
                 case 'gender':
-                    choice = prompt("Which trait would you like to seach by?");
+                    results = searchByGender(people);
+                    break;
                 case 'eye color':
+                    results = "";
+                    break;
+            }
             break;
-        }
         default:
             return searchPeopleDataSet(people);
     }
-
+    
     return results;
 }
+
+//function searchByTrait(gender = null, weight = null, occupation = null, height = null, eyeColor = null){};
+function searchByHeight(people){
+
+}
+function searchByWeight(people){
+
+}
+function searchByOccupation(people){
+
+}
+function searchByGender(people){
+    const genderToSearchFor = prompt('Please enter the gender of the person you are searching for.');
+    const genderSearchResults = people.filter(person => (person.gender.toLowerCase() === genderToSearchFor.toLowerCase()));
+    return genderSearchResults;
+}
+function searchByEyeColor(people){
+
+}
+
+
 
 function searchById(people) {
     const idToSearchForString = prompt('Please enter the id of the person you are searching for.');
