@@ -25,63 +25,72 @@ function runSearchAndMenu(people) {
     }
 }
 
-function searchPeopleDataSet(people) {
-
-    const searchTypeChoice = validatedPrompt(
-        'Please enter in what type of search you would like to perform.',
-        ['id', 'name', 'traits']
-    );
-
-    const searchTypeTraitChoice = validatedPrompt(
-        'Please enter in what type of search you would like to perform.',
-        ['height', 'weight', 'occupation', 'gender', 'eye color']
-    );
 
 
-    let choice;
-    let results = [];
-    switch (searchTypeChoice) {
-        case 'id':
-            results = searchById(people);
-            break;
-        case 'name':
-            results = searchByName(people);
-            break;
-        case 'traits':
-            switch (searchTypeTraitChoice) {
-                case 'height':
-                    results = "";
-                    break;
-                case 'weight':
-                    results = "";
-                    break;
-                case 'occupation':
-                    results = "";
-                    break;
-                case 'gender':
-                    results = searchByGender(people);
-                    break;
-                case 'eye color':
-                    results = "";
-                    break;
-            }
-            break;
-        default:
-            return searchPeopleDataSet(people);
+    function searchPeopleDataSet(people) {
+
+        const searchTypeChoice = validatedPrompt(
+            'Please enter in what type of search you would like to perform.',
+            ['id', 'name', 'traits']
+        );
+
+        const searchTypeTraitChoice = validatedPrompt(
+            'Please enter in what type of search you would like to perform.',
+            ['height', 'weight', 'occupation', 'gender', 'eye color']
+        );
+
+
+        
+        let results = [];
+        switch (searchTypeChoice) {
+            case 'id':
+                results = searchById(people);
+                break;
+            case 'name':
+                results = searchByName(people);
+                break;
+            case 'traits':
+                switch (searchTypeTraitChoice) {
+                    case 'height':
+                        results = searchByHeight(people);
+                        break;
+                    case 'weight':
+                        results = searchByWeight(people);
+                        break;
+                    case 'occupation':
+                        results = searchByOccupation(people);
+                        break;
+                    case 'gender':
+                        results = searchByGender(people);
+                        break;
+                    case 'eye color':
+                        results = searchByEyeColor(people);
+                        break;
+                }
+                break;
+            default:
+                return searchPeopleDataSet(people);
+        }
+        return results;
     }
     
-    return results;
-}
+
 
 //function searchByTrait(gender = null, weight = null, occupation = null, height = null, eyeColor = null){};
 function searchByHeight(people){
-
+    const heightToSearchFor = parseInt(prompt('Please enter the height of the person you are searching for.'));
+    const heightSearchResults = people.filter(person => (person.height === heightToSearchFor));
+    return heightSearchResults;
 }
 function searchByWeight(people){
-
+    const weightToSearchFor = parseInt(prompt('Please enter the weight of the person you are searching for.'));
+    const weightSearchResults = people.filter(person => (person.weight === weightToSearchFor));
+    return weightSearchResults;
 }
 function searchByOccupation(people){
-
+    const occupationToSearchFor = prompt('Please enter the occupation of the person you are searching for.');
+    const occupationSearchResults = people.filter(person => (person.occupation.toLowerCase() === occupationToSearchFor.toLowerCase()));
+    return occupationSearchResults;
 }
 function searchByGender(people){
     const genderToSearchFor = prompt('Please enter the gender of the person you are searching for.');
@@ -89,7 +98,9 @@ function searchByGender(people){
     return genderSearchResults;
 }
 function searchByEyeColor(people){
-
+    const eyeColorToSearchFor = prompt('Please enter the eye color of the person you are searching for.');
+    const eyeColorSearchResults = people.filter(person => (person.eyeColor.toLowerCase() === eyeColorToSearchFor.toLowerCase()));
+    return eyeColorSearchResults;
 }
 
 
