@@ -5,6 +5,12 @@
 
 "use strict";
 
+// height
+// weight
+// occupation
+// gender
+// eye color
+
 // You may modify this for testing purposes.
 const data = [
 	{

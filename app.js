@@ -9,6 +9,7 @@ function displayWelcome() {
     alert('Hello and welcome to the Most Wanted search application!');
 }
 
+
 function runSearchAndMenu(people) {
     const searchResults = searchPeopleDataSet(people);
 
@@ -31,6 +32,13 @@ function searchPeopleDataSet(people) {
         ['id', 'name', 'traits']
     );
 
+    const searchTypeTraitChoice = validatedPrompt(
+        'Please enter in what type of search you would like to perform.',
+        ['height', 'weight', 'occupation', 'gender', 'eye color']
+    );
+
+
+    let choice;
     let results = [];
     switch (searchTypeChoice) {
         case 'id':
@@ -40,9 +48,19 @@ function searchPeopleDataSet(people) {
             results = searchByName(people);
             break;
         case 'traits':
-            //! TODO
-            // results = searchByTraits(people);
+            choice = prompt("Which trait would you like to seach by?");
+            switch (searchTypeTraitChoice) {
+                case 'height':
+                    choice = prompt("Which trait would you like to seach by?");
+                case 'weight':
+                    choice = prompt("Which trait would you like to seach by?");
+                case 'occupation':
+                    choice = prompt("Which trait would you like to seach by?");
+                case 'gender':
+                    choice = prompt("Which trait would you like to seach by?");
+                case 'eye color':
             break;
+        }
         default:
             return searchPeopleDataSet(people);
     }
