@@ -61,7 +61,6 @@ function runSearchAndMenu(people) {
     }
     
 function traitFunction(people){
-    //do {
         const searchTypeTraitChoice = validatedPrompt(
             'Please enter in what type of search you would like to perform.',
             ['height', 'weight', 'occupation', 'gender', 'eye color']
@@ -84,8 +83,6 @@ function traitFunction(people){
                 results = searchByEyeColor(people);
                 return results;
         }
-    //} while(userInput.toLowerCase() === "y");
-    //return results;
 
 
 }
@@ -133,6 +130,12 @@ function searchByName(people) {
     return fullNameSearchResults;
 }
 
+
+function displayPersonInfo(person){
+    let personArray = Object.entries(person);
+    alert(personArray);
+}
+
 function mainMenu(person, people) {
 
     const mainMenuUserActionChoice = validatedPrompt(
@@ -143,7 +146,7 @@ function mainMenu(person, people) {
     switch (mainMenuUserActionChoice) {
         case "info":
             //! TODO
-            // displayPersonInfo(person);
+            displayPersonInfo(person);
             break;
         case "family":
             //! TODO
@@ -167,6 +170,7 @@ function mainMenu(person, people) {
 function displayPeople(displayTitle, peopleToDisplay) {
     const formatedPeopleDisplayText = peopleToDisplay.map(person => `${person.firstName} ${person.lastName}`).join('\n');
     alert(`${displayTitle}\n\n${formatedPeopleDisplayText}`);
+    //people.filter(person => (person.firstName.toLowerCase() === firstNameToSearchFor.toLowerCase()));
 }
 
 function validatedPrompt(message, acceptableAnswers) {
