@@ -145,10 +145,13 @@ function displayPersonInfo(person){
 //   parents id (includes method)
 function findPersonFamily(person, people){
     const parentSearchResults = people.filter(per => (person.parents.includes(per.id)));
-    return parentSearchResults
+    return parentSearchResults;
 }
 
-
+function findPersonDescendants(person, people){
+    const descendantSearchResults = people.filter(per => (per.parents.includes(person.id)));
+    return descendantSearchResults;
+}
 
 function mainMenu(person, people) {
 
@@ -169,8 +172,8 @@ function mainMenu(person, people) {
             break;
         case "descendants":
             //! TODO
-            // let personDescendants = findPersonDescendants(person, people);
-            // displayPeople('Descendants', personDescendants);
+            let personDescendants = findPersonDescendants(person, people);
+            displayPeople('Descendants', personDescendants);
             break;
         case "quit":
             return;
