@@ -132,8 +132,11 @@ function searchByName(people) {
 
 
 function displayPersonInfo(person){
-    let personArray = Object.entries(person);
-    alert(personArray);
+    
+    for (const [key, value] of Object.entries(person)){
+        alert(`This is the ${key}\n${key}: ${value}`);
+        console.log(`${key}: ${value}`);
+    }
 }
 
 function mainMenu(person, people) {
