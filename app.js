@@ -132,12 +132,23 @@ function searchByName(people) {
 
 
 function displayPersonInfo(person){
-    
+    let stringPersonInfo = ""
     for (const [key, value] of Object.entries(person)){
-        alert(`This is the ${key}\n${key}: ${value}`);
+        stringPersonInfo += `${key}: ${value}\n`;
         console.log(`${key}: ${value}`);
     }
+    alert(stringPersonInfo)
 }
+
+//1. take full data set and filter (filter method)
+//2. check id of each person in people array by found person(person parameter) 
+//   parents id (includes method)
+function findPersonFamily(person, people){
+    const parentSearchResults = people.filter(per => (person.parents.includes(per.id)));
+    return parentSearchResults
+}
+
+
 
 function mainMenu(person, people) {
 
@@ -153,8 +164,8 @@ function mainMenu(person, people) {
             break;
         case "family":
             //! TODO
-            // let personFamily = findPersonFamily(person, people);
-            // displayPeople('Family', personFamily);
+            let personFamily = findPersonFamily(person, people);
+            displayPeople('Family', personFamily);
             break;
         case "descendants":
             //! TODO
