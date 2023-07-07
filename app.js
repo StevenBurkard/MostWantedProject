@@ -34,14 +34,12 @@ function runSearchAndMenu(people) {
             ['id', 'name', 'traits']
         );
 
-        const searchTypeTraitChoice = validatedPrompt(
-            'Please enter in what type of search you would like to perform.',
-            ['height', 'weight', 'occupation', 'gender', 'eye color']
-        );
+        
 
 
         
         let results = [];
+        let userInput = "";
         switch (searchTypeChoice) {
             case 'id':
                 results = searchById(people);
@@ -50,23 +48,11 @@ function runSearchAndMenu(people) {
                 results = searchByName(people);
                 break;
             case 'traits':
-                switch (searchTypeTraitChoice) {
-                    case 'height':
-                        results = searchByHeight(people);
-                        break;
-                    case 'weight':
-                        results = searchByWeight(people);
-                        break;
-                    case 'occupation':
-                        results = searchByOccupation(people);
-                        break;
-                    case 'gender':
-                        results = searchByGender(people);
-                        break;
-                    case 'eye color':
-                        results = searchByEyeColor(people);
-                        break;
-                }
+                do{
+                    results = traitFunction(people);
+                    userInput = prompt("Do you want to continue (y or n)");
+                    people = results;
+                }while(userInput.toLowerCase() === "y");
                 break;
             default:
                 return searchPeopleDataSet(people);
@@ -74,7 +60,35 @@ function runSearchAndMenu(people) {
         return results;
     }
     
+function traitFunction(people){
+    //do {
+        const searchTypeTraitChoice = validatedPrompt(
+            'Please enter in what type of search you would like to perform.',
+            ['height', 'weight', 'occupation', 'gender', 'eye color']
+        );
 
+        switch (searchTypeTraitChoice) {
+            case 'height':
+                results = searchByHeight(people);
+                return results;
+            case 'weight':
+                results = searchByWeight(people);
+                return results;
+            case 'occupation':
+                results = searchByOccupation(people);
+                return results;
+            case 'gender':
+                results = searchByGender(people);
+                return results;
+            case 'eye color':
+                results = searchByEyeColor(people);
+                return results;
+        }
+    //} while(userInput.toLowerCase() === "y");
+    //return results;
+
+
+}
 
 //function searchByTrait(gender = null, weight = null, occupation = null, height = null, eyeColor = null){};
 function searchByHeight(people){
