@@ -149,8 +149,13 @@ function findPersonFamily(person, people){
 }
 
 function findPersonDescendants(person, people){
-    const descendantSearchResults = people.filter(per => (per.parents.includes(person.id)));
-    return descendantSearchResults;
+    const childrenSearchResults = people.filter(per => (per.parents.includes(person.id)));
+    const grandchildrenSearchResult = people.filter(people.filter(per => (per.parents.includes(person.id))));
+    //const grandchildrenSearchResult = people.filter(p => (p.parents.includes(person.id)));
+    const descendants = [];
+    descendants.push(...childrenSearchResults);
+    descendants.push(...grandchildrenSearchResult);
+    return descendants;
 }
 
 function mainMenu(person, people) {
