@@ -143,9 +143,23 @@ function displayPersonInfo(person){
 //1. take full data set and filter (filter method)
 //2. check id of each person in people array by found person(person parameter) 
 //   parents id (includes method)
+function siblingsSearchResults(){
+    const parentSearchResults = people.filter(per => (person.parents.includes(per.id)));
+    for (i = 0; i < parentSearchResults.length; i++){    
+        for (p of people){
+            if (p.parents.includes(parentSearchResults[i].id)){
+                siblings.push(...[p])
+            }
+        }
+    }
+    return siblings;
+}
+
 function findPersonFamily(person, people){
     const parentSearchResults = people.filter(per => (person.parents.includes(per.id)));
-    return parentSearchResults;
+    const spouseSearchResults = people.filter(per => (person.currentSpouse === per.id));
+    const siblingsSearchResults = people.filter(per => (per.parents.includes(person.id)));
+    return familySearchResults;
 }
 
 function findPersonDescendants(person, people){
