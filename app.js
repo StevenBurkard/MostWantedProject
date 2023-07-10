@@ -156,17 +156,24 @@ function siblingsSearchResults(person, people){
     return newSiblingSearchResults;
 }
 
+// function displayRelationships(prefix, searchResults){
+//     let relationships = [];
+//     for (object of searchResults){
+//         relationships += [prefix + " " + searchResults[object]]
+//     }
+//     return relationships
+// }
 
 
-function findPersonFamily(person, people){
+
+function findParents(person, people){
     const parentSearchResults = people.filter(per => (person.parents.includes(per.id)));
+    return parentSearchResults;
+}
+
+function findSpouse(person, people){
     const spouseSearchResults = people.filter(per => (person.currentSpouse === per.id));
-    const siblingSearchResults = siblingsSearchResults(person, people);
-    let familySearchResults = [];
-    familySearchResults.push(...parentSearchResults);
-    familySearchResults.push(...spouseSearchResults);
-    familySearchResults.push(...siblingSearchResults);
-    return familySearchResults;
+    return spouseSearchResults;
 }
 
 function findPersonDescendants(person, people){
@@ -197,8 +204,12 @@ function mainMenu(person, people) {
             break;
         case "family":
             //! TODO
-            let personFamily = findPersonFamily(person, people);
-            displayPeople('Family', personFamily);
+            let personParents = findParents(person, people);
+            displayPeople('Parents', personParents);
+            let personSpouse = findSpouse(person, people);
+            displayPeople('Spouse', personSpouse);
+            let personSiblings = siblingsSearchResults(person, people);
+            displayPeople('Siblings', personSiblings);
             break;
         case "descendants":
             //! TODO
