@@ -150,11 +150,15 @@ function findPersonFamily(person, people){
 
 function findPersonDescendants(person, people){
     const childrenSearchResults = people.filter(per => (per.parents.includes(person.id)));
-    const grandchildrenSearchResult = people.filter(people.filter(per => (per.parents.includes(person.id))));
-    //const grandchildrenSearchResult = people.filter(p => (p.parents.includes(person.id)));
-    const descendants = [];
-    descendants.push(...childrenSearchResults);
-    descendants.push(...grandchildrenSearchResult);
+    let descendants = childrenSearchResults
+    for (i = 0; i < childrenSearchResults.length; i++){
+    //const grandChildrenSearchResults = people.filter(per => (per.parents.includes(childrenSearchResults[i].id)))
+        for (p of people){
+            if (p.parents.includes(childrenSearchResults[i].id)){
+                descendants.push(...[p])
+            }
+        }
+    }
     return descendants;
 }
 
